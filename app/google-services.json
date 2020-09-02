@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "979747336153",
+    "firebase_url": "https://stop-smoke-3be2d.firebaseio.com",
+    "project_id": "stop-smoke-3be2d",
+    "storage_bucket": "stop-smoke-3be2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979747336153:android:0d1cb2a66daa30835e33c8",
+        "android_client_info": {
+          "package_name": "ru.mvlikhachev.stopsmoke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "979747336153-0t3p8sj5rah6puu3tdp2cqqqvtej6h9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.mvlikhachev.stopsmoke",
+            "certificate_hash": "c7076c681706c22564e74273c12c073d6d2b8df5"
+          }
+        },
+        {
+          "client_id": "979747336153-7gf3tdkkblb5st19g9rh9in4q279pio4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuHCXk5m3UpPWhS54wwhNGw5X2w-mH6Mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979747336153-7gf3tdkkblb5st19g9rh9in4q279pio4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
