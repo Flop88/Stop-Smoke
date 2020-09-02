@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Stop Smoke</string>
+    <string name="email">Email</string>
+    <string name="name">Имя пользователя</string>
+    <string name="password">Пароль</string>
+    <string name="confirmPassword">Повторите пароль</string>
+    <string name="registration">Зарегистрироваться</string>
+    <string name="logIn">Или войдите</string>
 </resources>
