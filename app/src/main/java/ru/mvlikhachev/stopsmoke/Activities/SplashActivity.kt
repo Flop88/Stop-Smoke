@@ -1,4 +1,4 @@
-package ru.mvlikhachev.stopsmoke.Activity
+package ru.mvlikhachev.stopsmoke.Activities
 
 import android.content.Intent
 import android.os.Bundle
