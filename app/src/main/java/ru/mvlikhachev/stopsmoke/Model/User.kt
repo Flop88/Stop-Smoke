@@ -8,29 +8,30 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "user")
 data class User(
     @PrimaryKey(autoGenerate = true)
-    val uid : Int,
+    var id : Int,
 
-    @ColumnInfo(name = "first_name")
-    val firstName : String?,
+    @ColumnInfo(name = "uid")
+    var uid : String,
 
-    @ColumnInfo(name = "first_name")
-    val lastName : String?,
+    @ColumnInfo(name = "firstname")
+    var firstName : String?,
 
-    @ColumnInfo(name = "user_name")
-    val userName : String ?,
+    @ColumnInfo(name = "lastname")
+    var lastName : String?,
+
+    @ColumnInfo(name = "username")
+    var userName : String ?,
 
     @ColumnInfo(name = "email")
-    val email : String?,
+    var email : String?,
 
     @ColumnInfo(name = "cigarette_count")
-    val cigaretteCount : Double?,
+    var cigaretteCount : Double?,
 
     @ColumnInfo(name = "cigarette_price")
-    val cigarettePackPrice : Int?,
+    var cigarettePackPrice : Int?,
 
     @ColumnInfo(name = "stop_drink_date")
-    val stopDay : String?,
+    var stopDay : String?,
 
-    @ColumnInfo(name = "drink_days")
-    val resetDay : ArrayList<String>?
 )

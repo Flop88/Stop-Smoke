@@ -7,12 +7,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
-import ru.mvlikhachev.stopsmoke.Database.UserDatabase
+import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
 
 
@@ -29,12 +29,9 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Initialization block
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            UserDatabase::class.java, "database-users"
-        ).build()
+
+
         // Initialize Firebase Auth
         auth = Firebase.auth
 
@@ -193,6 +190,7 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
+                        createUser(user)
                         startApp()
                         //updateUI(user)
                     } else {
@@ -208,6 +206,23 @@ class LoginActivity : AppCompatActivity() {
                     // ...
                 }
         }
+    }
+
+    private fun createUser(user: FirebaseUser?) {
+        val email = textInputEmail.editText?.text.toString().trim()
+        val userName = textInputName.editText?.text.toString().trim()
+
+        var currentUser : User? = null
+        currentUser!!.uid = user!!.uid
+        currentUser.email = email
+        currentUser.userName = userName
+
+        Log.d("createUser", "Firebase and local ID " + currentUser.uid)
+        Log.d("createUser", "Firebase and local email " + currentUser.email)
+        Log.d("createUser", "Firebase and local name " + currentUser.userName)
+//        userViewModel.addNewUser(currentUser)
+//
+
     }
 
     private fun startApp() {

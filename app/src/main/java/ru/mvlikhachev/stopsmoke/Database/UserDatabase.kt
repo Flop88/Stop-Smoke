@@ -8,4 +8,7 @@ import ru.mvlikhachev.stopsmoke.Model.User
 @Database(entities = [User::class], version = 1)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao() : UserDao
+
+
+
 }

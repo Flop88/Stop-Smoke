@@ -3,6 +3,7 @@ package ru.mvlikhachev.stopsmoke.Activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.mvlikhachev.stopsmoke.Database.UserDatabase
 import ru.mvlikhachev.stopsmoke.R
 
 
@@ -13,6 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
         // Hide ActionBar
         supportActionBar?.hide()
+//        UserDatabase.get(application)
 
         val thread: Thread = object : Thread() {
             override fun run() {
