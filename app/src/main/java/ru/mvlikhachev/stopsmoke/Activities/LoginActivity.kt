@@ -7,10 +7,12 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
+import ru.mvlikhachev.stopsmoke.Database.UserDatabase
 import ru.mvlikhachev.stopsmoke.R
 
 
@@ -28,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // Initialization block
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            UserDatabase::class.java, "database-users"
+        ).build()
         // Initialize Firebase Auth
         auth = Firebase.auth
 
