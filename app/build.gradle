@@ -46,6 +46,7 @@ dependencies {
     // add the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
     implementation 'com.google.firebase:firebase-auth-ktx:19.3.2'
+    implementation 'com.google.firebase:firebase-database-ktx:19.4.0'
 
 
     // Room

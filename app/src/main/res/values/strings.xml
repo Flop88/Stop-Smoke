@@ -6,4 +6,6 @@
     <string name="confirmPassword">Повторите пароль</string>
     <string name="registration">Зарегистрироваться</string>
     <string name="logIn">Или войдите</string>
+    <string name="aboutProgram">О программе</string>
+    <string name="sign_out">Выход</string>
 </resources>

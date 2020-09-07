@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import ru.mvlikhachev.stopsmoke.Model.User
@@ -22,14 +25,15 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    private val database: FirebaseDatabase = Firebase.database
+    private val usersDatabaseReference: DatabaseReference = database.reference.child("users")
+
     private var isLoginModeActive: Boolean = true
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
-
 
 
         // Initialize Firebase Auth
@@ -40,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
         // first authorization
         authorizationUi()
 
-        // Если пользователь авторизован - сразу открыть мэйн активити
 
         // Если пользователь авторизован - сразу открыть мэйн активити
         if (auth.currentUser != null) {
@@ -181,6 +184,9 @@ class LoginActivity : AppCompatActivity() {
                     // ...
                 }
         } else {
+            if (!validateEmail() or !validateName() or !validatePassword() or !validateConfirmPassword()) {
+                return
+            }
             Log.d("clickButton", "Registration")
             Log.d("clickButton", "Login $email")
             Log.d("clickButton", "Password $password")
@@ -212,17 +218,21 @@ class LoginActivity : AppCompatActivity() {
         val email = textInputEmail.editText?.text.toString().trim()
         val userName = textInputName.editText?.text.toString().trim()
 
-        var currentUser : User? = null
-        currentUser!!.uid = user!!.uid
-        currentUser.email = email
-        currentUser.userName = userName
+//        var currentUser : User(user)
 
-        Log.d("createUser", "Firebase and local ID " + currentUser.uid)
-        Log.d("createUser", "Firebase and local email " + currentUser.email)
-        Log.d("createUser", "Firebase and local name " + currentUser.userName)
+//        Log.d("createUser", "Firebase and local ID " + currentUser?.uid)
+//        Log.d("createUser", "Firebase and local email " + currentUser?.email)
+//        Log.d("createUser", "Firebase and local name " + currentUser?.userName)
+
+//        usersDatabaseReference.push().setValue(currentUser);
+
 //        userViewModel.addNewUser(currentUser)
 //
 
+    }
+    private fun writeNewUser(userId: String, name: String, email: String?) {
+//        val user = User(name, email)
+//        usersDatabaseReference.child(userId).setValue(user)
     }
 
     private fun startApp() {

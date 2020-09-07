@@ -1,12 +1,12 @@
 package ru.mvlikhachev.stopsmoke.Activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import ru.mvlikhachev.stopsmoke.Database.UserDatabase
 import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
@@ -36,10 +36,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        var newUser = db.userDao().getUserById("wdawdawdawda")
-        var currentUserName = newUser?.userName
+//        var newUser = db.userDao().getUserById("wdawdawdawda")
+//        var currentUserName = newUser?.userName
 
-        Log.d("getName", "Name $currentUserName")
+//        Log.d("getName", "Name $currentUserName")
 
 //        // Initialize Firebase Auth
 //        auth = Firebase.auth
@@ -49,5 +49,35 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    // Create menu
+    override fun
+            onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+            when (item.getItemId()) {
+                R.id.sign_out -> {
+                    val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    FirebaseAuth.getInstance().signOut()
+                    startActivity(intent)
+                    finish()
+
+                    true
+                }
+                R.id.about_program -> {
+                    startActivity(Intent(this@MainActivity, AboutActivity::class.java))
+                    true
+                }
+                else -> super.onOptionsItemSelected(item)
+            }
+        // хз зачем, но без нее не работает
+       return super.onOptionsItemSelected(item)
     }
 }
