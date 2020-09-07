@@ -17,6 +17,9 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -215,18 +218,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun createUser(user: FirebaseUser?) {
-        val email = textInputEmail.editText?.text.toString().trim()
-        val userName = textInputName.editText?.text.toString().trim()
 
-//        var currentUser : User(user)
+        Log.d("createUser", "FirebaseUser:" + user?.uid)
+        Log.d("createUser", "FirebaseUser:" + user?.displayName)
+        Log.d("createUser", "FirebaseUser:" + user?.email)
 
-//        Log.d("createUser", "Firebase and local ID " + currentUser?.uid)
-//        Log.d("createUser", "Firebase and local email " + currentUser?.email)
-//        Log.d("createUser", "Firebase and local name " + currentUser?.userName)
+        val dateFormat: DateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        val date = Date()
 
-//        usersDatabaseReference.push().setValue(currentUser);
+        val currentDate = dateFormat.format(date)
 
-//        userViewModel.addNewUser(currentUser)
+
+        val name = textInputName.editText?.text.toString().trim()
+
+        val user = User(user?.uid, name, user?.email, currentDate)
+
+
+        usersDatabaseReference.push().setValue(user);
 //
 
     }
