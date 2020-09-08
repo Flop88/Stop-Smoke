@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
     private val usersDatabaseReference: DatabaseReference = database.reference.child("users")
 
     private var isLoginModeActive: Boolean = true
+    private var gender = "male"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -199,6 +201,7 @@ class LoginActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
+                        onRadioButtonClicked(view = view)
                         createUser(user)
                         startApp()
                         //updateUI(user)
@@ -231,16 +234,34 @@ class LoginActivity : AppCompatActivity() {
 
         val name = textInputName.editText?.text.toString().trim()
 
-        val user = User(user?.uid, name, user?.email, currentDate)
+
+
+
+        val user = User(user?.uid, name, user?.email, currentDate, gender = gender)
 
 
         usersDatabaseReference.push().setValue(user);
-//
-
     }
-    private fun writeNewUser(userId: String, name: String, email: String?) {
-//        val user = User(name, email)
-//        usersDatabaseReference.child(userId).setValue(user)
+
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.maleRadioButton ->
+                    if (checked) {
+                        gender = "male"
+
+                    }
+                R.id.femaleRadioButton ->
+                    if (checked) {
+                        gender = "female"
+                    }
+            }
+        }
     }
 
     private fun startApp() {

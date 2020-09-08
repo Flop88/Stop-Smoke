@@ -19,6 +19,8 @@ data class User(
 //
     var stopDay : String?,
 
+    var gender: String,
+
 ) {
 
 }

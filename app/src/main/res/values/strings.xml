@@ -8,4 +8,6 @@
     <string name="logIn">Или войдите</string>
     <string name="aboutProgram">О программе</string>
     <string name="sign_out">Выход</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
 </resources>
