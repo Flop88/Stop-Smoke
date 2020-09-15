@@ -1,26 +1,22 @@
 package ru.mvlikhachev.stopsmoke.Model
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
-
+@IgnoreExtraProperties
 data class User(
 
-    var uid : String?,
+    var uid : String? = "",
 
-    var userName : String ?,
+    var userName : String = "",
 
-    var email : String?,
+    var email : String? = "",
 
 //    var cigaretteCount : Double?,
 //
 //    var cigarettePackPrice : Int?,
 //
-    var stopDay : String?,
+    var stopDay : String= "",
 
-    var gender: String,
+    var gender: String = "",
 
-) {
-
-}
+)

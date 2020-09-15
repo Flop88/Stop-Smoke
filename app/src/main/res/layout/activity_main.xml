@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     tools:context=".Activities.MainActivity">
 
     <ImageView
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Вы не пьете:"
+        android:text="Вы не курите:"
         android:textSize="30sp"
         android:textStyle="bold" />
     <TextView
