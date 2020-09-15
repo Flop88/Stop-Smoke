@@ -36,30 +36,31 @@ class MainActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("users").child(globalId)
         auth = Firebase.auth
 
+        val updateDateThread = Thread {
+            while (true) {
+                try {
+                    val postListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            // Get User object and use the values to update the UI
+                            val post = dataSnapshot.getValue(User::class.java)
+                            updateUI(post)
+                        }
 
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // Get Post object and use the values to update the UI
-                val post = dataSnapshot.getValue(User::class.java)
-                Log.d("firebaseData", "Username " + post?.userName)
-                Log.d("firebaseData", "Date " + post?.stopDay)
-                Log.d("firebaseData", "time " + post?.userName)
-
-                updateUI(post)
-                // ...
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-                // ...
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // Getting User failed, log a message
+                            Log.w("TAG", "loadUser:onCancelled", databaseError.toException())
+                        }
+                    }
+                    database.addValueEventListener(postListener)
+                    Thread.sleep(60000) //1000 - 1 сек
+                } catch (ex: InterruptedException) {
+                    ex.printStackTrace()
+                }
             }
         }
-        database.addValueEventListener(postListener)
+        updateDateThread.start()
 
-
-
-    }
+        }
 
     private fun updateUI(user: User?) {
         nameTextView.setText("Здраствуйте, ${user?.userName}")
