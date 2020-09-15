@@ -21,18 +21,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-//        var newUser = db.userDao().getUserById("wdawdawdawda")
-//        var currentUserName = newUser?.userName
-
-//        Log.d("getName", "Name $currentUserName")
-
-//        // Initialize Firebase Auth
-//        auth = Firebase.auth
-//
-////        supportActionBar?.hide()
-//        Log.d("getUser", "User ID " + auth.currentUser!!.uid)
-
-
 
     }
 
