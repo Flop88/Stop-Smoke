@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/settings_program"
+        android:title="@string/settingsProgram"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/about_program"
         android:title="@string/aboutProgram"
         app:showAsAction="never" />

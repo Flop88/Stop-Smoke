@@ -225,7 +225,7 @@ class LoginActivity : AppCompatActivity() {
 
         val name = textInputName.editText?.text.toString().trim()
 
-        val user = User(uid = user?.uid, displayName = name, email =  user?.email, stopDay = currentDate, "")
+        val user = User(uid = user?.uid, displayName = name, email =  user?.email, stopDay = currentDate, gender = "", cigaretteCount = 0.0, cigarettePackPrice = 0.0)
 
 
         usersDatabaseReference.child(user.uid.toString()).setValue(user);
