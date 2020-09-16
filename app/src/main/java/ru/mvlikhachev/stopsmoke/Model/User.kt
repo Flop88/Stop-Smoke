@@ -7,7 +7,7 @@ data class User(
 
     var uid : String? = "",
 
-    var userName : String = "",
+    var displayName : String = "",
 
     var email : String? = "",
 

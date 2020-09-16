@@ -41,10 +41,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         // Initialize Firebase Auth
         auth = Firebase.auth
-
 
         supportActionBar?.hide()
         // first authorization
@@ -193,9 +191,6 @@ class LoginActivity : AppCompatActivity() {
             if (!validateEmail() or !validateName() or !validatePassword() or !validateConfirmPassword()) {
                 return
             }
-            Log.d("clickButton", "Registration")
-            Log.d("clickButton", "Login $email")
-            Log.d("clickButton", "Password $password")
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -220,12 +215,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+
     private fun createUser(user: FirebaseUser?) {
-
-        Log.d("createUser", "FirebaseUser:" + user?.uid)
-        Log.d("createUser", "FirebaseUser:" + user?.displayName)
-        Log.d("createUser", "FirebaseUser:" + user?.email)
-
+ // 2020/02/05 03:00:00
         val dateFormat: DateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         val date = Date()
 
@@ -233,10 +225,10 @@ class LoginActivity : AppCompatActivity() {
 
         val name = textInputName.editText?.text.toString().trim()
 
-        val user = User(uid = user?.uid, userName = name, email =  user?.email, stopDay = currentDate, "")
+        val user = User(uid = user?.uid, displayName = name, email =  user?.email, stopDay = currentDate, "")
 
 
-        usersDatabaseReference.push().setValue(user);
+        usersDatabaseReference.child(user.uid.toString()).setValue(user);
     }
 
 

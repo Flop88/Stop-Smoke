@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -14,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
 import ru.mvlikhachev.stopsmoke.Utils.calculateTimeWithoutSmoke
-import ru.mvlikhachev.stopsmoke.Utils.getUserId
+import ru.mvlikhachev.stopsmoke.Utils.getCurrentDate
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var days: String
     private lateinit var time: String
 
+
+    private lateinit var globalId : String
+
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
@@ -31,27 +35,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val globalId: String = "-MHI9dYi7K7bgRlVmEjH"
-
-//        val globalId: String = getUserId(this).toString()
-
-//        var pushedRef = firebase.database().ref('/customers').push({ email: email });
-//        console.log(pushedRef.key);
-
-        Log.d("currentuserid", globalId)
-//        Log.d("currentuserid", globalIdd)
-
-
-//        database = Firebase.database.reference
-
+        auth = Firebase.auth
+        globalId = auth.currentUser?.uid.toString()
 
         database = FirebaseDatabase.getInstance().getReference("users").child(globalId)
-        auth = Firebase.auth
 
         val updateDateThread = Thread {
             while (true) {
                 try {
-                    val postListener = object : ValueEventListener {
+                    val userListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             // Get User object and use the values to update the UI
                             val user = dataSnapshot.getValue(User::class.java)
@@ -63,7 +55,8 @@ class MainActivity : AppCompatActivity() {
                             Log.w("TAG", "loadUser:onCancelled", databaseError.toException())
                         }
                     }
-                    database.addValueEventListener(postListener)
+
+                    database.addValueEventListener(userListener)
                     Thread.sleep(60000) //1000 - 1 сек
                 } catch (ex: InterruptedException) {
                     ex.printStackTrace()
@@ -75,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     private fun updateUI(user: User?) {
-        nameTextView.setText("Здраствуйте, ${user?.userName}")
+        nameTextView.setText("Здраствуйте, ${user?.displayName}")
         var days : String = "14"
         var hours : String = "23"
         var minutes : String = "32"
@@ -122,5 +115,10 @@ class MainActivity : AppCompatActivity() {
             }
         // хз зачем, но без нее не работает
        return super.onOptionsItemSelected(item)
+    }
+
+    fun resetSmokeDate(view: View) {
+        val updateDate: String = getCurrentDate().toString()
+        database.child("stopDay").setValue(updateDate)
     }
 }
