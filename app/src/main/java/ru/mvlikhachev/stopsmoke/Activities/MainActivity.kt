@@ -13,8 +13,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
-import java.text.ParseException
-import java.text.SimpleDateFormat
+import ru.mvlikhachev.stopsmoke.Utils.calculateTimeWithoutSmoke
+import ru.mvlikhachev.stopsmoke.Utils.getUserId
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +32,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val globalId: String = "-MHI9dYi7K7bgRlVmEjH"
+
+//        val globalId: String = getUserId(this).toString()
+
+//        var pushedRef = firebase.database().ref('/customers').push({ email: email });
+//        console.log(pushedRef.key);
+
+        Log.d("currentuserid", globalId)
+//        Log.d("currentuserid", globalIdd)
+
+
 //        database = Firebase.database.reference
+
+
         database = FirebaseDatabase.getInstance().getReference("users").child(globalId)
         auth = Firebase.auth
 
@@ -42,8 +54,8 @@ class MainActivity : AppCompatActivity() {
                     val postListener = object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             // Get User object and use the values to update the UI
-                            val post = dataSnapshot.getValue(User::class.java)
-                            updateUI(post)
+                            val user = dataSnapshot.getValue(User::class.java)
+                            updateUI(user)
                         }
 
                         override fun onCancelled(databaseError: DatabaseError) {
@@ -80,39 +92,7 @@ class MainActivity : AppCompatActivity() {
         timeTextView.setText("$hours:$minutes")
     }
 
-    fun calculateTimeWithoutSmoke(date: String?): Array<String>? {
-        val result = arrayOf("10", "00", "00")
-        val format = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
-        var timeUp: Long = 0
-        try {
-            timeUp = format.parse(date).getTime()
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        val diff = System.currentTimeMillis() - timeUp
-        val diffMinutes = diff / (60 * 1000) % 60
-        val diffHours = diff / (60 * 60 * 1000) % 24
-        val diffDays = diff / (24 * 60 * 60 * 1000)
 
-        // Проверка если минуты и секунды меньше 10 - выполняем форматирование, чтоб красиво отображалось во вью
-        var hoursString = ""
-        var minutesString = ""
-        val daysString = diffDays.toString()
-        hoursString = if (diffHours < 10) {
-            "0$diffHours"
-        } else {
-            diffHours.toString()
-        }
-        minutesString = if (diffMinutes < 10) {
-            "0$diffMinutes"
-        } else {
-            diffMinutes.toString()
-        }
-        result[0] = daysString
-        result[1] = hoursString
-        result[2] = minutesString
-        return result
-    }
 
     // Create menu
     override fun
