@@ -117,7 +117,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> super.onOptionsItemSelected(item)
             }
-        // хз зачем, но без нее не работает
        return super.onOptionsItemSelected(item)
     }
 

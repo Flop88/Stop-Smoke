@@ -3,22 +3,16 @@ package ru.mvlikhachev.stopsmoke.Model
 import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
-data class User(
+class User(
 
     var uid: String? = "",
-
     var displayName: String = "",
-
     var email: String? = "",
-
-    var cigaretteCount: Double?,
-//
-    var cigarettePackPrice: Double?,
-//
+//    var cigaretteCount: String?,
+//    var cigarettePackPrice: String?,
     var stopDay: String = "",
+//    var gender: String = "",
 
-    var gender: String = "",
+    ) {
 
-    )
-
-fun User() {}
+}
