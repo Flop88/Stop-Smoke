@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Stop Smoke</string>
+    <string name="app_name">Я не Курю!</string>
     <string name="email">Email</string>
     <string name="name">Имя пользователя</string>
     <string name="password">Пароль</string>
@@ -11,4 +11,22 @@
     <string name="male">Мужской</string>
     <string name="female">Женский</string>
     <string name="settingsProgram">Настройки</string>
+
+    <string name="youArntDrink">Вы не пьете:</string>
+    <string name="todrink">Сбросить</string>
+    <string name="writeReviews">Оставить отзыв</string>
+    <string name="newName">Новое имя</string>
+    <string name="setTime">Установить время</string>
+    <string name="save">Сохранить</string>
+    <string name="about">About</string>
+    <string name="settings">Настройки</string>
+    <string name="app_full_name">Приложение-счетчик дней без алкоголя</string>
+    <string name="author">Автор:</string>
+    <string name="author_name">M.V.Likhachev</string>
+    <string name="version">Версия:</string>
+    <string name="version_text">1.0.0</string>
+    <string name="profile">Профиль</string>
+    <string name="main">Главная</string>
+    <string name="friends">Друзья</string>
+    <string name="aboutMe">Обо мне</string>
 </resources>

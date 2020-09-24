@@ -111,10 +111,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, AboutActivity::class.java))
                     true
                 }
-                R.id.settings_program -> {
-                    startActivity(Intent(this@MainActivity, SettingActivity::class.java))
-                    true
-                }
+//                R.id.settings_program -> {
+//                    startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+//                    true
+//                }
                 else -> super.onOptionsItemSelected(item)
             }
        return super.onOptionsItemSelected(item)
