@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/settings_program"
-        android:title="@string/settingsProgram"
-        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/settings_program"-->
+<!--        android:title="@string/settingsProgram"-->
+<!--        app:showAsAction="never" />-->
     <item
         android:id="@+id/about_program"
         android:title="@string/aboutProgram"
