@@ -1,4 +1,4 @@
-package ru.mvlikhachev.stopsmoke.Utils
+package ru.mvlikhachev.stopsmoke.Service
 
 import android.app.Activity
 import com.google.android.gms.tasks.OnCompleteListener

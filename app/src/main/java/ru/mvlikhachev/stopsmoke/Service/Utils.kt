@@ -1,4 +1,4 @@
-package ru.mvlikhachev.stopsmoke.Utils
+package ru.mvlikhachev.stopsmoke.Service
 
 import android.content.Context
 import android.net.ConnectivityManager

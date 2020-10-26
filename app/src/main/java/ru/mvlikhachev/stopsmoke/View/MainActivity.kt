@@ -1,4 +1,4 @@
-package ru.mvlikhachev.stopsmoke.Activities
+package ru.mvlikhachev.stopsmoke.View
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,8 +14,8 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.mvlikhachev.stopsmoke.Model.User
 import ru.mvlikhachev.stopsmoke.R
-import ru.mvlikhachev.stopsmoke.Utils.calculateTimeWithoutSmoke
-import ru.mvlikhachev.stopsmoke.Utils.getCurrentDate
+import ru.mvlikhachev.stopsmoke.Service.calculateTimeWithoutSmoke
+import ru.mvlikhachev.stopsmoke.Service.getCurrentDate
 
 
 class MainActivity : AppCompatActivity() {
